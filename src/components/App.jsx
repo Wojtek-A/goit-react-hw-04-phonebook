@@ -27,17 +27,6 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    try {
-      const localContacts = JSON.parse(localStorage.getItem('localContacts'));
-      if (localContacts) {
-        setContacts(localContacts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
     localStorage.setItem('localContacts', JSON.stringify(contacts));
   }, [contacts]);
 
@@ -53,13 +42,9 @@ export const App = () => {
     setContacts([...contacts, newContact]);
   };
 
-  const contactsList = (contacts, filter) => {
-    const contactsList = contacts.filter(contact =>
-      contact.name.toUpperCase().includes(filter.toUpperCase())
-    );
-
-    return contactsList;
-  };
+  const contactsList = contacts.filter(contact =>
+    contact.name.toUpperCase().includes(filter.toUpperCase())
+  );
 
   const handelFilterContacts = value => setFilter(value);
 
@@ -73,7 +58,7 @@ export const App = () => {
       <h2>Contacts</h2>
       <Filter filter={filter} onChange={handelFilterContacts} />
       <ContactList
-        contacts={contactsList(contacts, filter)}
+        contacts={contactsList}
         onRemoveContact={handelRemoveContact}
       ></ContactList>
     </div>

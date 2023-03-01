@@ -23,7 +23,6 @@ export const ContactForm = ({ onAdd }) => {
         <label htmlFor="name">Name</label>
         <input
           className={css.input}
-          id={contact.name}
           type="text"
           name="name"
           onChange={handleChange}
@@ -36,7 +35,6 @@ export const ContactForm = ({ onAdd }) => {
         <label htmlFor="name">Landline number</label>
         <InputMask
           className={css.input}
-          id={contact.number}
           type="tel"
           name="number"
           onChange={handleChange}
